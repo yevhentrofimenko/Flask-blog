@@ -1,0 +1,20 @@
+{% extends "layouts/layout1.html" %}
+{% block title %}
+    BLOG
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            {% for post in posts | reverse %}
+                <div class="blog-post">
+                    <form method="post" action="{{ url_for('remove', id=post.id) }}">
+                        <button class='delete_post' type="submit"><span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                    </form>
+                    <p class="post-p">{{ post.title }}</p>
+                    <p class="blog-content post-p ">{{ post.content }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

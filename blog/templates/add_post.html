@@ -1,0 +1,28 @@
+﻿{% extends "layouts/layout1.html" %}
+{% block title %}
+    BLOG
+{% endblock %}
+{% block content %}
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Add Post</p>
+                    <form method="post" action="/post" class="add-post-form">
+                        <div class="input-small-block">
+                            <label class="label-form">Title:</label>
+                            <input id="title" name="title" type="text"/>
+                        </div>
+                        <div class="input-small-block">
+                            <label class="label-form">Text:</label>
+                            <input id="content" name="content" type="text"/>
+                        </div>
+                        <input class="submit_add_post" type="submit"/>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Portfolio Grid Section -->
+{% endblock %}

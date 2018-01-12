@@ -1,0 +1,56 @@
+{% extends "layouts/layout1.html" %}
+{% block title %}
+    BLOG
+{% endblock %}
+{% block content %}
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <img class="img-responsive" src="/static/img/profile.png" alt="">
+                    <p>BLOG</p>
+                    <div class="row post">
+                        {% for post in posts | reverse %}
+                            <div class="blog-post">
+                                <form method="post" action="{{ url_for('remove', id=post.id) }}">
+
+                                    {% if post.user_id == current_user.id %}
+                                        <button class='delete_post' type="submit"><span
+                                                class="glyphicon glyphicon-remove"></span></button>
+                                    {% endif %}
+
+                                </form>
+
+                                <p class="post-p">{{ post.title }}</p>
+                                <p class="blog-content post-p ">{{ post.content }}
+                                {% for user in users %}
+                                    {% if post.user_id == user.id %}
+                                        <span class="user-name-comment user-post-name">{{ user.name }} {{ user.second_name }}</span>
+                                    {% endif %}
+                                {% endfor %}
+                                </p>
+                                {% if post.user_id != current_user.id %}
+                                    <a href="{{ url_for('add_comment', id=post.id ) }}">Add Comment</a>
+                                {% endif %}
+
+                                {% for comment in comments %}
+                                    {% if comment.post_id == post.id %}
+                                        <p class="comment">{{ comment.content }}
+                                            {% for user in users %}
+                                                {% if comment.sender == user.id %}
+                                                    <span class="user-name-comment">{{ user.name }} {{ user.second_name }}</span>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </p>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Portfolio Grid Section -->
+{% endblock %}
