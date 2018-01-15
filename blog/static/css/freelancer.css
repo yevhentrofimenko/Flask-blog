@@ -556,6 +556,17 @@ footer .footer-below {
     word-wrap: break-word;
 }
 
+.comment-box {
+    width: 97%;
+    text-align: left;
+    padding: 10px;
+    background: #2d3e50;
+    border-radius: 10px;
+    margin: 15px auto 15px auto;
+    word-wrap: break-word;
+    padding-bottom: 35px;
+}
+
 .user-name-comment {
     float: right;
     font-size: 13px;

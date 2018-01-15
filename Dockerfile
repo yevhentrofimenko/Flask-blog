@@ -6,5 +6,6 @@ RUN mkdir /app
 WORKDIR /app
 COPY . /app
 RUN pip install --no-cache-dir -r requirements.txt
+ADD db-dump/testDB.sql /docker-entrypoint-initdb.d/
 ENV FLASK_ENV="docker"
 EXPOSE 5000

@@ -6,11 +6,12 @@ services:
     environment:
       - POSTGRES_USER=testusr
       - POSTGRES_PASSWORD=password
-      - POSTGRES_DB=testdb
+      - POSTGRES_DB=test_database
     volumes:
-      - ./postgres-data/postgres:/var/lib/postgresql/data
+     - "./db-dump:/docker-entrypoint-initdb.d"
     ports:
       - "5432:5432"
+    container_name: testdb
   app:
     restart: always
     build: .

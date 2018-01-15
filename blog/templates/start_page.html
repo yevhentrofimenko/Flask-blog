@@ -24,11 +24,11 @@
 
                                 <p class="post-p">{{ post.title }}</p>
                                 <p class="blog-content post-p ">{{ post.content }}
-                                {% for user in users %}
-                                    {% if post.user_id == user.id %}
-                                        <span class="user-name-comment user-post-name">{{ user.name }} {{ user.second_name }}</span>
-                                    {% endif %}
-                                {% endfor %}
+                                    {% for user in users %}
+                                        {% if post.user_id == user.id %}
+                                            <span class="user-name-comment user-post-name">{{ user.name }} {{ user.second_name }}</span>
+                                        {% endif %}
+                                    {% endfor %}
                                 </p>
                                 {% if post.user_id != current_user.id %}
                                     <a href="{{ url_for('add_comment', id=post.id ) }}">Add Comment</a>
@@ -36,13 +36,26 @@
 
                                 {% for comment in comments %}
                                     {% if comment.post_id == post.id %}
-                                        <p class="comment">{{ comment.content }}
-                                            {% for user in users %}
-                                                {% if comment.sender == user.id %}
-                                                    <span class="user-name-comment">{{ user.name }} {{ user.second_name }}</span>
+                                        <div class="comment-box">
+                                         <form method="post" action="{{ url_for('comment_delete', id=comment.id) }}">
+
+                                                {% if comment.sender == current_user.id %}
+                                                    <button class='delete_post' type="submit"><span
+                                                            class="glyphicon glyphicon-remove"
+                                                            style="color: white;"></span>
+                                                    </button>
                                                 {% endif %}
-                                            {% endfor %}
-                                        </p>
+
+                                            </form>
+                                            <p class="comment">{{ comment.content }}
+                                                {% for user in users %}
+                                                    {% if comment.sender == user.id %}
+                                                        <span class="user-name-comment">{{ user.name }} {{ user.second_name }}</span>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </p>
+
+                                        </div>
                                     {% endif %}
                                 {% endfor %}
                             </div>

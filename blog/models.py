@@ -43,7 +43,8 @@ class Comments(db.Model):
     sender = db.Column(db.Integer, db.ForeignKey('user.id'),
                        nullable=False)
     post_id = db.Column(db.Integer, db.ForeignKey('posts.id'), nullable=False)
-    content = db.Column(db.String(255), nullable=False)
+    content = db.Column(db.String(), nullable=False)
+
 
 
 

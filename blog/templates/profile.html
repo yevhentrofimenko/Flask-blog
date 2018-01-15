@@ -1,7 +1,12 @@
 ﻿{% extends "layouts/layout1.html" %}
 {% block content %}
-    <h1>{{ user.name }} - Profile</h1>
+    <div class="container">
+        <div class="row">
+            <h1>{{ user.name }} - Profile</h1></br>
+            <h4>Name: {{ user.name }}</h4></br>
+            <h4>Last name: {{ user.second_name }}</h4></br>
+            <h4>Email: {{ user.email }}</h4></br>
+        </div>
+    </div>
 
-    <h2>Email: {{ user.email }}</h2>
-
-{%  endblock %}
+{% endblock %}
