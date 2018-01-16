@@ -37,6 +37,11 @@ class Posts(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'),
                         nullable=False)
 
+    def __init__(self, title, content, user_id):
+        self.title = title
+        self.content = content
+        self.user_id = user_id
+
 
 class Comments(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -45,7 +50,10 @@ class Comments(db.Model):
     post_id = db.Column(db.Integer, db.ForeignKey('posts.id'), nullable=False)
     content = db.Column(db.String(), nullable=False)
 
-
+    def __init__(self, sender, post_id, content):
+        self.sender = sender
+        self.post_id = post_id
+        self.content = content
 
 
 # Setup Flask-Security

@@ -60,15 +60,15 @@ def post_comment():
 def commnets():
     return render_template('comments.html')
 
-
-@app.route('/post', methods=['POST'])
-@login_required
-def post():
-    post = Posts(title=request.form['title'], content=request.form['content'], user_id=current_user.id)
-    if request.form['title'] and request.form['content']:
-        db.session.add(post)
-        db.session.commit()
-    return redirect(url_for('blog'))
+#
+# @app.route('/post', methods=['POST'])
+# @login_required
+# def post():
+#     post = Posts(title=request.form['title'], content=request.form['content'], user_id=current_user.id)
+#     if request.form['title'] and request.form['content']:
+#         db.session.add(post)
+#         db.session.commit()
+#     return redirect(url_for('blog'))
 
 
 @app.route('/comment_delete/<int:id>', methods=['POST'])
